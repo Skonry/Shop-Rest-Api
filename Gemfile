@@ -10,8 +10,8 @@ gem 'sqlite3', '~> 1.4'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 
-gem 'jsonapi-serializer'
 gem 'kaminari'
+gem 'blueprinter'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
@@ -32,9 +32,6 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 5.0.0'
-end
-
-group :development do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
