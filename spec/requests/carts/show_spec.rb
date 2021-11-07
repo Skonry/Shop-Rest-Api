@@ -4,7 +4,7 @@ RSpec.describe "Carts Show Action", type: :request do
   context "when cart exists" do
     let(:cart) { Cart.create() }
 
-    before { get "/cart/#{cart.id}" }
+    before { get "/carts/#{cart.id}" }
 
     it "returns status code 200" do
       expect(response).to have_http_status(200)
@@ -16,7 +16,7 @@ RSpec.describe "Carts Show Action", type: :request do
   end
 
   context "when cart does not exist" do
-    before {get "/cart/999"}
+    before {get "/carts/999"}
 
     it "returns status code 404" do
       expect(response).to have_http_status(404)
