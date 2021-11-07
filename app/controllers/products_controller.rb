@@ -8,4 +8,10 @@ class ProductsController < ApplicationController
       render json: {errors: result.errors}, status: :bad_request
     end
   end
+
+  def show
+    product = Product.find_by name: params[:product_name]
+
+    render json ProductBlueprint.render(product), status: :ok
+  end
 end
