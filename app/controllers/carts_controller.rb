@@ -21,6 +21,6 @@ class CartsController < ApplicationController
     @cart = Cart.find(params[:id])
 
   rescue ActiveRecord::RecordNotFound
-    render json: {message: "Product of given name does not exist"}, status: :not_found
+    render json: {message: "Cart of given id does not exist"}, status: :not_found
   end
 end
