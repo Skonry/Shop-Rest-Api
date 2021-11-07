@@ -2,7 +2,8 @@ class CartBlueprint < Blueprinter::Base
   field :id
   
   field :total_price do |cart|
-    cart.products.map({|product| product.price}).sum
+    prices = cart.products.map {|product| product.price}
+    prices.sum
   end
 
   association :products, blueprint: ProductBlueprint
