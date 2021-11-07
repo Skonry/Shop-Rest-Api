@@ -31,6 +31,7 @@ class GetProductsService < ApplicationService
       else
         errors << "Unsupported filtering attribute"
       end
+    end
     
     if @pagination
       if Product.page(@pagination[:page]).out_of_range?

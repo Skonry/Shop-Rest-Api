@@ -6,5 +6,6 @@ class ProductsController < ApplicationController
       render json: ProductBlueprint.render(result.payload), status: :ok
     else
       render json: {errors: result.errors}, status: :bad_request
+    end
   end
 end
