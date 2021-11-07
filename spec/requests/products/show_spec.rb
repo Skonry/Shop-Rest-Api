@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Products Index Action", type: :request do
+RSpec.describe "Products Show Action", type: :request do
   let!(:categories) { 
     1.times do |i|
       FactoryBot.create(:category, name: "Category #{i + 1}")
