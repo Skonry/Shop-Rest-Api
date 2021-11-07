@@ -4,7 +4,11 @@ class CartProductsController < ApplicationController
   def create
     cart_product = @cart.cart_products.create(cart_product_params)
 
-    render json: cart_product, status: :created
+    if cart_product.invalid?
+      render json: {message: "Validation failed"}, status: :bad_request 
+    else    
+      render json: cart_product, status: :created
+    end
   end
 
   def destroy
@@ -14,11 +18,11 @@ class CartProductsController < ApplicationController
     head :no_content
   end
 
-  def private set_cart
+  private def set_cart
     @cart = Cart.find(params[:cart_id])
   end
 
-  def private cart_product_params
+  private def cart_product_params
     params.permit(:card_id, :product_id)
   end
 end
