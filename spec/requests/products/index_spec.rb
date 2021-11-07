@@ -16,7 +16,7 @@ RSpec.describe "Products Index Action", type: :request do
   }
 
   context "when send valid request without parameters" do
-    get "/products"
+    before { get "/products" }
 
     it "returns status code 200" do
       expect(response).to have_http_status(200)
@@ -32,7 +32,7 @@ RSpec.describe "Products Index Action", type: :request do
   end
 
   context "when send valid request with page parameter" do
-    get "products", :params => {:pagination => {:page => 2} }
+    before { get "products", :params => {:pagination => {:page => 2} } }
 
     it "returns status code 200" do
       expect(response).to have_http_status(200)
@@ -44,7 +44,7 @@ RSpec.describe "Products Index Action", type: :request do
   end
 
   context "when send valid request with category filter parameter" do
-    get "products", :params => {:filtering => {:category => "Category 1"} }
+    before { get "products", :params => {:filtering => {:category => "Category 1"} } }
 
     it "returns status code 200" do
       expect(response).to have_http_status(200)
@@ -60,7 +60,7 @@ RSpec.describe "Products Index Action", type: :request do
   end
 
   context "when send valid request with price filter parameter" do
-    get "products", :params => {:filtering => {:price => {:from => 5, :to => 10} } }
+    before { get "products", :params => {:filtering => {:price => {:from => 5, :to => 10} } } }
 
     it "returns status code 200" do
       expect(response).to have_http_status(200)
@@ -72,7 +72,7 @@ RSpec.describe "Products Index Action", type: :request do
   end
 
   context "when send invalid request with page parameter" do
-    get "products", :params => {:pagination => {:page => 22} }
+    before { get "products", :params => {:pagination => {:page => 22} } }
 
     it "returns status code 400" do
       expect(response).to have_http_status(400)
@@ -84,7 +84,7 @@ RSpec.describe "Products Index Action", type: :request do
   end
 
   context "when send invalid request without filter parameter" do
-    get "products", :params => {:filtering => nil }
+    before { get "products", :params => {:filtering => nil } }
 
     it "returns status code 400" do
       expect(response).to have_http_status(400)
@@ -96,7 +96,7 @@ RSpec.describe "Products Index Action", type: :request do
   end
 
   context "when send invalid request with empty category filter parameter" do
-    get "products", :params => {:filtering => {:category => nil } }
+    before { get "products", :params => {:filtering => {:category => nil } } }
 
     it "returns status code 400" do
       expect(response).to have_http_status(400)
@@ -108,7 +108,7 @@ RSpec.describe "Products Index Action", type: :request do
   end
 
   context "when send invalid request with empty price filter parameter" do
-    get "products", :params => {:filtering => {:price => nil } }
+    before { get "products", :params => {:filtering => {:price => nil } } }
 
     it "returns status code 400" do
       expect(response).to have_http_status(400)
@@ -120,7 +120,7 @@ RSpec.describe "Products Index Action", type: :request do
   end
 
   context "when send invalid request price filter without both from and to parameters" do
-    get "products", :params => {:filtering => {:price => {:from => nil , to => nil} } }
+    before { get "products", :params => {:filtering => {:price => {:from => nil , to => nil} } } }
 
     it "returns status code 400" do
       expect(response).to have_http_status(400)

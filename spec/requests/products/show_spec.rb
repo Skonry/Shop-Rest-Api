@@ -15,9 +15,10 @@ RSpec.describe "Products Index Action", type: :request do
     end
   }
 
-  context "when product exists"
+  context "when product exists" do
     let(:product_name) { "Product 1" }
-    get "/products/find", :params => {:product_name => product_name}
+
+    before { get "/products/find", :params => {:product_name => product_name} }
 
     it "returns status code 200" do
       expect(response).to have_http_status(200)
@@ -28,9 +29,10 @@ RSpec.describe "Products Index Action", type: :request do
     end
   end
 
-  context "when product does not exist"
+  context "when product does not exist" do
     let(:product_name) { "Invalid product name" }
-    get "/products/find", :params => {:product_name => product_name}
+
+    before { get "/products/find", :params => {:product_name => product_name} }
 
     it "returns status code 404" do
       expect(response).to have_http_status(404)
