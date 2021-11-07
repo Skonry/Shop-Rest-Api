@@ -4,19 +4,19 @@ class CartsController < ApplicationController
   def create
     cart = Cart.create
 
-    render :json CartBlueprint(cart).render, status: :created 
+    render json: CartBlueprint(cart).render, status: :created 
   end
 
   def show
     cart = Cart.find(params[:id])
 
-    render :json CartBlueprint(cart).render, status: :ok
+    render json: CartBlueprint(cart).render, status: :ok
   end
 
   def complete
     @cart.destroy
 
-    render :json {message: "Shopping complited"}, status: :ok
+    render json: {message: "Shopping complited"}, status: :ok
   end
 
   private def set_cart
