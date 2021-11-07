@@ -41,13 +41,13 @@ class GetProductsService < ApplicationService
   end
 
   private def filter_products
-    products = products.all
-    if @filtering[:category]
+    products = Product.all
+    if @filtering && @filtering[:category]
       category = Category.find_by(name: @filtering[:category][:name])
       products = category.products
     end
 
-    if @filtering[:price]
+    if @filtering && @filtering[:price]
       from = @filtering[:price].fetch(:from, 0)
       to = @filtering[:price].fetch(:to, 10000)
       products = products.filter_by_price(from, to)
@@ -57,6 +57,8 @@ class GetProductsService < ApplicationService
   end
 
   private def paginate_products(products)
-    products.page(@pagination[:page])
+    return products.page(@pagination[:page]) if @pagination && @pagination[:page]
+    
+    products.page(1)
   end
 end
