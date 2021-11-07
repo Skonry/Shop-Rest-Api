@@ -4,7 +4,7 @@ class CartProductsController < ApplicationController
   def create
     cart_product = @cart.cart_products.create(cart_product_params)
 
-    render :json cart_product, status: :created
+    render json: cart_product, status: :created
   end
 
   def destroy
