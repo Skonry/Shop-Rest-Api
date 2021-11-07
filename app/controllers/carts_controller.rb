@@ -1,5 +1,5 @@
 class CartsController < ApplicationController
-  before_action :set_cart
+  before_action :set_cart, only: [:show, :complete]
 
   def create
     cart = Cart.create
