@@ -4,4 +4,5 @@ FactoryBot.define do
     price: 30.0
     
     association :category
+  end
 end
