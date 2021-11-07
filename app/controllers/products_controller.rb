@@ -10,8 +10,11 @@ class ProductsController < ApplicationController
   end
 
   def find
-    product = Product.find_by name: params[:product_name]
+    product = Product.find_by! name: params[:product_name]
 
-    render json ProductBlueprint.render(product), status: :ok
+    render json: ProductBlueprint.render(product), status: :ok
+
+  rescue ActiveRecord::RecordNotFound
+    render json: {message: "Product of given name does not exist"}, status: :not_found
   end
 end

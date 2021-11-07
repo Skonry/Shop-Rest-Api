@@ -21,7 +21,7 @@ class GetProductsService < ApplicationService
 
     if @filtering
       if @filtering[:category]
-        if @filtering[:category][:name].blank?
+        if @filtering[:category].blank?
           errors << "Missing category name"
         end
       elsif @filtering[:price]
@@ -38,13 +38,20 @@ class GetProductsService < ApplicationService
         errors << "Provided page is out of range"
       end
     end
+
+    errors
   end
 
   private def filter_products
     products = Product.all
+    
     if @filtering && @filtering[:category]
-      category = Category.find_by(name: @filtering[:category][:name])
-      products = category.products
+      category = Category.find_by name: @filtering[:category]
+      if category.blank?
+        product = []
+      else
+        products = category.products
+      end
     end
 
     if @filtering && @filtering[:price]
