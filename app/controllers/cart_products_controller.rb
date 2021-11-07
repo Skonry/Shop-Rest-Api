@@ -12,7 +12,7 @@ class CartProductsController < ApplicationController
   end
 
   def destroy
-    cart_product = @cart.cart_product.find(params[:id])
+    cart_product = @cart.cart_products.find(params[:id])
     cart_product.destroy
 
     head :no_content
