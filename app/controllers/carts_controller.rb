@@ -8,9 +8,7 @@ class CartsController < ApplicationController
   end
 
   def show
-    cart = Cart.find(params[:id])
-
-    render json: CartBlueprint.render(cart), status: :ok
+    render json: CartBlueprint.render(@cart), status: :ok
   end
 
   def complete
@@ -20,6 +18,6 @@ class CartsController < ApplicationController
   end
 
   private def set_cart
-    @cart = Cart.find(params[:cart_id])
+    @cart = Cart.find(params[:id])
   end
 end
