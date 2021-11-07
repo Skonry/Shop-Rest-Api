@@ -15,14 +15,14 @@ RSpec.describe "Carts Complete Action", type: :request do
     end
 
     it "destroy cart" do
-      post "/carts/#{cart.id}"
+      get "/carts/#{cart.id}"
 
       expect(response).to have_http_status(404)
     end
   end
 
   context "when cart does not exist" do
-    before {get "/carts/999/complete"}
+    before { post "/carts/999/complete" }
 
     it "returns status code 404" do
       expect(response).to have_http_status(404)
