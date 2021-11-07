@@ -9,7 +9,7 @@ class ProductsController < ApplicationController
     end
   end
 
-  def show
+  def find
     product = Product.find_by name: params[:product_name]
 
     render json ProductBlueprint.render(product), status: :ok
