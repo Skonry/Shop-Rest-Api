@@ -5,7 +5,7 @@ RSpec.describe "Cart Products Create Action", type: :request do
     let(:cart) { FactoryBot.create(:cart) }
     let(:product) { FactoryBot.create(:product, name: "Product 1", category_id: 1) }
     
-    before { post "/cart/1/cart_product", :params => {:card_id => 1, :product_id => 1} } 
+    before { post "/carts/1/cart_product", :params => {:card_id => 1, :product_id => 1} } 
 
     it "returns status code 201" do
       expect(response).to have_http_status(201)
@@ -20,7 +20,7 @@ RSpec.describe "Cart Products Create Action", type: :request do
   end
 
   context "when send invalid post request" do
-    before { post "/cart/1/cart_product", :params => {:card_id => 999, :product_id => 999} }
+    before { post "/carts/1/cart_product", :params => {:card_id => 999, :product_id => 999} }
     
     it "returns status code 400" do
       expect(response).to have_http_status(400)
